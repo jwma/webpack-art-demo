@@ -1,0 +1,11 @@
+module.exports = {
+    pluginConfig: {
+        ACCESS_KEY: '',
+        SECRET_KEY: '',
+        bucket: '',
+        path: ''
+    }, // 更多pluginConfig配置可参考：https://github.com/longtian/qiniu-webpack-plugin
+    buildConfig: {
+        publicPath: ''
+    }
+}

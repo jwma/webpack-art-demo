@@ -1,0 +1,24 @@
+{
+  "name": "webpack-art",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=prod webpack",
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --open"
+  },
+  "author": "MJ",
+  "license": "ISC",
+  "devDependencies": {
+    "art-template-loader": "^1.4.3",
+    "cross-env": "^5.0.1",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "qiniu-webpack-plugin": "^0.4.2",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "art-template": "^4.12.2"
+  }
+}
