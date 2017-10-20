@@ -60,10 +60,10 @@ if (process.env.NODE_ENV === 'prod') {
     // 配置七牛插件
     const QiniuPlugin = require('qiniu-webpack-plugin')
     const qiniuPlugin = new QiniuPlugin(qiniuConfig.pluginConfig)
-    //module.exports.output.publicPath = qiniuConfig.buildConfig.publicPath
+    module.exports.output.publicPath = qiniuConfig.buildConfig.publicPath
 
     module.exports.plugins = (module.exports.plugins || []).concat([
-        //qiniuPlugin, // 启用七牛插件
+        qiniuPlugin, // 启用七牛插件
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             compress: {
