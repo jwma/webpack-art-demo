@@ -9,5 +9,3 @@ $(function() {
     $('#app').fadeIn()
     $('h1').css({'color': 'red'})
 })
-
-// module.exports = render

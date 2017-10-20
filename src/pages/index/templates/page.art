@@ -1,0 +1,12 @@
+{{ include './header.art' headerData }}
+<div>{{ msg }}!!!</div>
+<hr>
+<div>
+    <p>引用本地图片资源，<code>npm run build</code>时会被上传到七牛</p>
+    <img style="width: 200px;" src="../images/demo.jpg">
+</div>
+<div>
+    <P>引用非本地资源时，会保持原样引用</p>
+    <img style="width: 200px;" src="https://qn.kaiheikeji.com/tn-fd4d7c85.png?v=1502730305798">
+</div>
+{{ include './footer.art' }}

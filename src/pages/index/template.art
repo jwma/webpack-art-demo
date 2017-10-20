@@ -1,3 +1,0 @@
-<h1>{{ msg }}!!!</h1>
-<hr>
-<img style="width: 200px;" src="./demo.jpg">

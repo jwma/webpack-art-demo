@@ -1,8 +1,15 @@
-const render = require('./template.art')
-const data = {
-    msg: 'My Page'
-}
+import $ from 'jquery'
 
-typeof document === 'object' && (document.body.innerHTML = render(data))
+$(function() {
+    // 渲染HTML
+    const render = require('./templates/page.art')
+    const data = {
+        headerData: {
+            title: 'using art-template'
+        },
+        msg: "it's works!"
+    }
+    $('#app').html(render(data))
 
-module.exports = render
+    $('h1').css({'color': 'red'})
+})
