@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const qiniuConfig = require('./config/qiniu.config') // 引入七牛配置文件
 
 module.exports = {
@@ -19,7 +20,7 @@ module.exports = {
         jquery: 'jQuery',
     },
     devServer: {
-        port: 8080,
+        port: 8000,
         compress: true,
         contentBase: path.resolve(__dirname, 'dist'),
         proxy: {
@@ -27,21 +28,23 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.jpg$/,
-            loader: 'file-loader'
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
         }, {
-            test: /\.png$/,
-            loader: 'url-loader?minetype=image/png'
+            test: /\.(jpg|png|gif)$/i,
+            use: ['file-loader']
         }, {
             test: /\.art$/,
-            loader: 'art-template-loader',
-            options: {}
+            use: [
+                { loader: 'art-template-loader' }
+            ]
         }]
     },
     plugins: [
         new webpack.DefinePlugin({
             ENV: JSON.stringify(process.env.NODE_ENV)
         }),
+        new ExtractTextPlugin('styles/[name].css'),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/pages', 'base.art'),  // 指定模板
             filename: 'index.html',  // 指定生成的文件名

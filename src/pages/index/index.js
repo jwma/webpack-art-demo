@@ -1,4 +1,5 @@
 import $ from 'jquery'
+require('./css/index.css')
 
 $(function() {
     // 渲染HTML
@@ -10,6 +11,4 @@ $(function() {
         msg: "it's works!"
     }
     $('#app').html(render(data))
-
-    $('h1').css({'color': 'red'})
 })
