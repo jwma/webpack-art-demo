@@ -18,16 +18,21 @@ $(function () {
     const render = require('./demo.art')
     typeof document === 'object' && (document.getElementById('app').innerHTML = render())
 
-    demoAPI.getGameInfo(function (response) {
-        $('#app').fadeIn()
-        $('#nickname').text(response.game_info.nickname)
-        $('#avatar').attr('src', response.game_info.avatar)
-        $('#records').append(buildRecordTpl(response.game_info.draw_records))
+    demoAPI.getGameInfo({
+        successCallback: function (response) {
+            $('#app').fadeIn()
+            $('#nickname').text(response.game_info.nickname)
+            $('#avatar').attr('src', response.game_info.avatar)
+            $('#records').append(buildRecordTpl(response.game_info.draw_records))
 
-        setTimeout(function () {
-            $('#loading').hide()
-            $('#info').fadeIn()
-        }, 800)
+            setTimeout(function () {
+                $('#loading').hide()
+                $('#info').fadeIn()
+            }, 800)
+        },
+        failCallback: function (response) {
+            
+        }
     })
 
     var canDrawNow = true
@@ -40,20 +45,22 @@ $(function () {
         $('#drawBtn').text('抽奖中...')
         canDrawNow = false
 
-        demoAPI.doLuckyDraw(function (response) {
-            // 前端阻止重复点击
-            setTimeout(function () {
-                canDrawNow = true
-            }, 500)
-            $('#drawBtn').text('点击抽奖')
+        demoAPI.doLuckyDraw({
+            successCallback: function (response) {
+                // 前端阻止重复点击
+                setTimeout(function () {
+                    canDrawNow = true
+                }, 500)
+                $('#drawBtn').text('点击抽奖')
 
-            if (response.new_draw_record.is_win) {
-                alert('中奖了~')
-            } else {
-                alert('真可惜!')
+                if (response.new_draw_record.is_win) {
+                    alert('中奖了~')
+                } else {
+                    alert('真可惜!')
+                }
+
+                $('#records').append(buildRecordTpl([response.new_draw_record]))
             }
-
-            $('#records').append(buildRecordTpl([response.new_draw_record]))
         })
     })
 })

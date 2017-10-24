@@ -26,7 +26,7 @@ module.exports = {
         proxy: {
             '/activity': {
                 changeOrigin: true,
-                target: 'http://localhost:8000',
+                target: 'http://local.demo',
             }
         }
     },
