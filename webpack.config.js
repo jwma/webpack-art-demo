@@ -20,10 +20,14 @@ module.exports = {
         jquery: 'jQuery',
     },
     devServer: {
-        port: 8000,
+        port: 9000,
         compress: true,
         contentBase: path.resolve(__dirname, 'dist'),
         proxy: {
+            '/activity': {
+                changeOrigin: true,
+                target: 'http://localhost:8000',
+            }
         }
     },
     module: {
@@ -47,13 +51,13 @@ module.exports = {
         new ExtractTextPlugin('styles/[name].css'),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/pages', 'base.art'),  // 指定模板
-            filename: 'index.html',  // 指定生成的文件名
-            chunks: ['index']  // 指定要引入哪些js
+            filename: 'index.html',                                   // 指定生成的文件名
+        chunks: ['index']                                             // 指定要引入哪些js
         }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src/pages', 'base.art'),  // 指定模板
-            filename: 'demo.html',  // 指定生成的文件名
-            chunks: ['demo']  // 指定要引入哪些js
+            template: path.join(__dirname, 'src/pages', 'base.art'),
+            filename: 'demo.html',  
+            chunks: ['demo']  
         })
     ]
 }
