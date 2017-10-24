@@ -1,28 +1,6 @@
 var $ = require('jquery')
 var request = require('../../utils/request')
-
-// 获取游戏信息
-function getGameInfo(callback) {
-    request.send({
-        url: '/activity/v1/game-info',
-        dataType: 'json',
-        success: function (response) {
-            typeof callback === 'function' && callback(response)
-        }
-    })
-}
-
-// 抽奖
-function doLuckyDraw(callback) {
-    request.send({
-        url: '/activity/v1/do-lucky-draw',
-        method: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            typeof callback === 'function' && callback(response)
-        }
-    })
-}
+var demoAPI = require('../../api/demo')
 
 // 拼接中奖记录模板
 function buildRecordTpl(drawRecords) {
@@ -40,7 +18,7 @@ $(function () {
     const render = require('./demo.art')
     typeof document === 'object' && (document.getElementById('app').innerHTML = render())
 
-    getGameInfo(function (response) {
+    demoAPI.getGameInfo(function (response) {
         $('#app').fadeIn()
         $('#nickname').text(response.game_info.nickname)
         $('#avatar').attr('src', response.game_info.avatar)
@@ -62,7 +40,7 @@ $(function () {
         $('#drawBtn').text('抽奖中...')
         canDrawNow = false
 
-        doLuckyDraw(function (response) {
+        demoAPI.doLuckyDraw(function (response) {
             // 前端阻止重复点击
             setTimeout(function () {
                 canDrawNow = true

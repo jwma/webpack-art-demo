@@ -1,12 +1,19 @@
 {{ include './header.art' headerData }}
-<div>{{ msg }}!!!</div>
-<hr>
-<div>
-    <p>引用本地图片资源，<code>npm run build</code>时会被上传到七牛</p>
-    <img style="width: 200px;" src="../images/demo.jpg">
-</div>
-<div>
-    <P>引用非本地资源时，会保持原样引用</p>
-    <img style="width: 200px;" src="https://qn.kaiheikeji.com/tn-fd4d7c85.png?v=1502730305798">
+<div style="margin: 15px;">
+    <div style="font-size: 20px;">{{ msg }}</div>
+    <div>
+        <p>引用本地资源时，开发过程中会引用本地资源，编译后会资源会被自动上传到七牛，引用链接自动指向七牛。</p>
+        <div>
+            <code>npm run dev</code> 后引用本地资源
+        </div>
+        <div>
+            <code>npm run build</code> 后访问七牛的资源
+        </div>
+        <img style="width: 120px;" src="../images/demo.png">
+    </div>
+    <div>
+        <P>引用非本地资源时，会保持原样引用</p>
+        <img style="width: 120px;" src="http://www.kaiheikeji.com/static/baojimoshi.png">
+    </div>
 </div>
 {{ include './footer.art' }}

@@ -6,9 +6,9 @@ $(function() {
     const render = require('./templates/page.art')
     const data = {
         headerData: {
-            title: 'using art-template'
+            title: '使用 art-template 作为前端模板语言'
         },
-        msg: "it's works!"
+        msg: '这段话是编译模板时动态生成的'
     }
     $('#app').html(render(data))
 })

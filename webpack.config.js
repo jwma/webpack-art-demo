@@ -52,12 +52,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/pages', 'base.art'),  // 指定模板
             filename: 'index.html',                                   // 指定生成的文件名
-        chunks: ['index']                                             // 指定要引入哪些js
+            chunks: ['index']                                         // 指定要引入哪些js
         }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/pages', 'base.art'),
-            filename: 'demo.html',  
-            chunks: ['demo']  
+            filename: 'demo.html',
+            chunks: ['demo']
         })
     ]
 }
