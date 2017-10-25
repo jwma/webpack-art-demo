@@ -1,4 +1,4 @@
-import $ from 'jquery'
+var $ = require('jquery')
 require('./css/index.css')
 
 $(function() {
