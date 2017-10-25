@@ -7,7 +7,8 @@ const qiniuConfig = require('./config/qiniu.config') // 引入七牛配置文件
 module.exports = {
     entry: {
         index: path.join(__dirname, 'src/pages/index', 'index.js'),
-        demo: path.join(__dirname, 'src/pages/demo', 'demo.js')
+        demo: path.join(__dirname, 'src/pages/demo', 'demo.js'),
+        news: path.join(__dirname, 'src/pages/news', 'app.js'),
     },
     output: {
         filename: '[name].js',
@@ -24,10 +25,11 @@ module.exports = {
         compress: true,
         contentBase: path.resolve(__dirname, 'dist'),
         proxy: {
-            '/activity': {
+            '/news-api': {
                 changeOrigin: true,
-                target: 'http://local.demo',
-            }
+                target: 'http://h5.newaircloud.com',
+                pathRewrite: { '^/news-api': '' }
+            },
         }
     },
     module: {
@@ -48,7 +50,7 @@ module.exports = {
         new webpack.DefinePlugin({
             ENV: JSON.stringify(process.env.NODE_ENV)
         }),
-        new ExtractTextPlugin('styles/[name].css'),
+        new ExtractTextPlugin('styles/[hash].css'),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/pages', 'base.art'),  // 指定模板
             filename: 'index.html',                                   // 指定生成的文件名
@@ -58,6 +60,11 @@ module.exports = {
             template: path.join(__dirname, 'src/pages', 'base.art'),
             filename: 'demo.html',
             chunks: ['demo']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'src/pages', 'base.art'),
+            filename: 'news.html',
+            chunks: ['news']
         })
     ]
 }

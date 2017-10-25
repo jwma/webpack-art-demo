@@ -1,0 +1,29 @@
+h1 {
+    margin: 0;
+    padding: 15px;
+    color: #fff;
+    background-color: #2A2F4A;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: .96;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 66px 0 0 0;
+}
+
+li {
+    font-size: 18px;
+    padding: 10px 0 10px 20px;
+    background-color: #E64849;
+    color: #fff;
+}
+
+.even {
+    background-color: #8F384A;
+}
