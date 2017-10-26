@@ -1,6 +1,6 @@
 <h1>澳门日报</h1>
 <ul>
-    {{ each newsList as news i }}
+    {{ each newsList news i }}
         <li {{ if i % 2 != 0 }}class="even"{{ /if }}>{{ news.title }}</li>
     {{ /each }}
 </ul>

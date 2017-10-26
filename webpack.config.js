@@ -2,14 +2,11 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoEntry = require('./auto-entry')
 const qiniuConfig = require('./config/qiniu.config') // 引入七牛配置文件
 
 module.exports = {
-    entry: {
-        index: path.join(__dirname, 'src/pages/index', 'index.js'),
-        demo: path.join(__dirname, 'src/pages/demo', 'demo.js'),
-        news: path.join(__dirname, 'src/pages/news', 'app.js'),
-    },
+    entry: {},
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
@@ -50,24 +47,13 @@ module.exports = {
         new webpack.DefinePlugin({
             ENV: JSON.stringify(process.env.NODE_ENV)
         }),
-        new ExtractTextPlugin('styles/[hash].css'),
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src/pages', 'base.art'),  // 指定模板
-            filename: 'index.html',                                   // 指定生成的文件名
-            chunks: ['index']                                         // 指定要引入哪些js
-        }),
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src/pages', 'base.art'),
-            filename: 'demo.html',
-            chunks: ['demo']
-        }),
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src/pages', 'base.art'),
-            filename: 'news.html',
-            chunks: ['news']
-        })
+        new ExtractTextPlugin('styles/[name].css')
     ]
 }
+
+// 自动侦测项目的入口文件和对应的html文件
+module.exports.entry = Object.assign(module.exports.entry, autoEntry.entry)
+module.exports.plugins = (module.exports.plugins || []).concat(autoEntry.plugins)
 
 // proudction config
 if (process.env.NODE_ENV === 'prod') {
