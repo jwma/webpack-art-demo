@@ -32,7 +32,7 @@ src/pages/xxx
 # 第二种，可以参考news.html相应的页面源码文件(src/pages/news)
 src/pages/xxx
     app.js     # 自动侦测的入口文件
-    base.art   # 自动侦测的基础模板文件
+    base.art   # 自动侦测的基础模板文件，如果页面目录没有base.art文件，会自动使用src/pages/base.art作为基础模板
     ...
 ```
 
